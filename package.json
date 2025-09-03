@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run backend:start && vite",
+    "dev": "node scripts/select-supabase.js && vite",
     "dev:frontend": "vite",
     "backend:start": "supabase start",
     "backend:stop": "supabase stop",

@@ -68,12 +68,13 @@ supabase/
 ### Prerequisites
 
 - Node.js 18+ and npm
-- Supabase CLI (install globally: `npm install -g supabase`)
+- Supabase CLI (download from https://github.com/supabase/cli/releases/latest and add to PATH)
 - Supabase account and project
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <YOUR_GIT_URL>
 cd review-stream-hub
@@ -87,23 +88,25 @@ npm install
 
 3. Set up environment variables:
 Create a `.env` file in the root directory with your Supabase credentials (if it doesn't already exist):
+
 ```env
 VITE_SUPABASE_URL=your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
-4. Run the development server (automatically starts Supabase backend):
+4. Run the development server (connects to your online Supabase project):
+
 ```bash
 npm run dev
 ```
 
 ### Backend Automation
 
-The application includes automated backend setup scripts that handle Supabase local development environment management:
+The application connects to your online Supabase project. The local Supabase scripts are available for local development if needed:
 
 #### Available Scripts
 
-- `npm run dev` - Starts Supabase backend and frontend development server
+- `npm run dev` - Prompts for Supabase credentials and starts the frontend development server
 - `npm run dev:frontend` - Runs only the frontend development server
 - `npm run backend:start` - Starts the local Supabase development environment
 - `npm run backend:stop` - Stops the local Supabase development environment
@@ -114,10 +117,10 @@ The application includes automated backend setup scripts that handle Supabase lo
 #### First-Time Setup
 
 When you run `npm run dev` for the first time, the system will:
-1. Start the local Supabase development environment
-2. Apply all database migrations automatically
-3. Set up the necessary tables, policies, and storage buckets
-4. Start the frontend development server
+
+1. Prompt you to enter your Supabase project URL and anon key
+2. Update the .env file with your credentials
+3. Start the frontend development server connected to your online Supabase project
 
 #### Manual Backend Management
 
