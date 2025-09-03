@@ -1,4 +1,4 @@
-# SmartCoreConnect - Digital Application Submission & Review System
+# Review Stream Hub - Digital Application Submission & Review System
 
 A comprehensive web-based platform built with React and Supabase for managing digital application submissions and reviews with real-time updates.
 
@@ -58,6 +58,9 @@ src/
 ├── pages/             # Page components
 ├── integrations/      # External service integrations
 └── lib/               # Utility functions
+supabase/
+├── config.toml        # Supabase configuration
+└── migrations/        # Database migrations
 ```
 
 ## Getting Started
@@ -73,16 +76,17 @@ src/
 1. Clone the repository:
 ```bash
 git clone <YOUR_GIT_URL>
-cd smartcoreconnect
+cd review-stream-hub
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Set up environment variables:
-Create a `.env` file in the root directory with your Supabase credentials:
+Create a `.env` file in the root directory with your Supabase credentials (if it doesn't already exist):
 ```env
 VITE_SUPABASE_URL=your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
