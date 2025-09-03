@@ -1,73 +1,193 @@
-# Welcome to your Lovable project
+# SmartCoreConnect - Digital Application Submission & Review System
 
-## Project info
+A comprehensive web-based platform built with React and Supabase for managing digital application submissions and reviews with real-time updates.
 
-**URL**: https://lovable.dev/projects/226f41c7-07d7-43dd-aa25-79be3d28f635
+## Features
 
-## How can I edit this code?
+### User Roles & Permissions
 
-There are several ways of editing your application.
+- **Admin Dashboard**
+  - Complete system oversight and management
+  - User management (view, edit, assign roles)
+  - Application monitoring and status updates
+  - Reviewer assignment to applications
+  - System-wide analytics and reporting
 
-**Use Lovable**
+- **Reviewer Dashboard**
+  - View assigned applications
+  - Review submitted documents and details
+  - Update application statuses (Pending, Under Review, Approved, Rejected)
+  - Add structured feedback and comments
+  - Real-time notifications for new assignments
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/226f41c7-07d7-43dd-aa25-79be3d28f635) and start prompting.
+- **Applicant Dashboard**
+  - Submit new applications with documents
+  - Track application progress in real-time
+  - View submission history
+  - Receive status updates and reviewer feedback
 
-Changes made via Lovable will be committed automatically to this repo.
+### Core Functionality
 
-**Use your preferred IDE**
+- **Real-Time Updates**: Live synchronization across all dashboards using Supabase realtime
+- **Secure Authentication**: Email/password authentication with role-based access control
+- **Document Management**: File upload and storage with secure access controls
+- **Status Tracking**: Comprehensive application lifecycle management
+- **Comment System**: Structured feedback and communication between reviewers and applicants
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Technical Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend**: React 18 with TypeScript
+- **Backend**: Supabase (PostgreSQL database, Authentication, Real-time subscriptions, File storage)
+- **UI Framework**: Tailwind CSS with shadcn/ui components
+- **State Management**: React Context API with custom hooks
+- **Routing**: React Router v6
+- **Form Handling**: React Hook Form with Zod validation
 
-Follow these steps:
+## Project Structure
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```
+src/
+├── components/
+│   ├── auth/           # Authentication components
+│   ├── dashboard/      # Role-specific dashboard components
+│   ├── applications/   # Application-related components
+│   ├── layout/        # Layout components
+│   └── ui/            # Reusable UI components (shadcn/ui)
+├── contexts/          # React context providers
+├── hooks/             # Custom React hooks
+├── pages/             # Page components
+├── integrations/      # External service integrations
+└── lib/               # Utility functions
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Supabase account and project
+
+### Installation
+
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
+cd smartcoreconnect
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. Set up environment variables:
+Create a `.env` file in the root directory with your Supabase credentials:
+```env
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Run the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Database Setup
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application automatically creates the necessary database tables and policies when first deployed. The schema includes:
 
-**Use GitHub Codespaces**
+- **User Profiles**: Extended user information with role assignments
+- **Applications**: Core application data with status tracking
+- **Comments**: Reviewer feedback and communication
+- **Documents**: File metadata for uploaded documents
+- **Storage**: Secure file storage with access controls
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Security Features
 
-## What technologies are used for this project?
+- **Row Level Security (RLS)**: Database-level access control
+- **Role-Based Permissions**: Granular access control based on user roles
+- **Secure File Upload**: Protected document storage with user-specific access
+- **Authentication**: Secure email/password authentication with session management
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
+### Using Lovable
 
 Simply open [Lovable](https://lovable.dev/projects/226f41c7-07d7-43dd-aa25-79be3d28f635) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+### Manual Deployment
 
-Yes, you can!
+The application can be deployed to any static hosting service:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```bash
+npm run build
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Deploy the `dist` folder to your hosting provider.
+
+## Usage
+
+### For Administrators
+
+1. Sign up and get assigned admin role
+2. Access the admin dashboard to manage users and applications
+3. Assign reviewers to incoming applications
+4. Monitor system-wide statistics and activity
+
+### For Reviewers
+
+1. Create an account (admin assigns reviewer role)
+2. View assigned applications in the reviewer dashboard
+3. Download and review submitted documents
+4. Update application statuses and provide feedback
+5. Communicate with applicants through the comment system
+
+### For Applicants
+
+1. Sign up for an account
+2. Submit applications with required information and documents
+3. Track application progress in real-time
+4. View reviewer feedback and status updates
+5. Maintain a complete submission history
+
+## Features Overview
+
+- ✅ **Multi-role Authentication System**
+- ✅ **Real-time Dashboard Updates**
+- ✅ **Application Lifecycle Management**
+- ✅ **Document Upload & Storage**
+- ✅ **Reviewer Assignment System**
+- ✅ **Comment & Feedback System**
+- ✅ **Responsive Design**
+- ✅ **Role-based Access Control**
+- ✅ **Real-time Notifications**
+- ✅ **Comprehensive User Management**
+
+## Development
+
+### Editing the Code
+
+**Use Lovable**: Visit [Lovable Project](https://lovable.dev/projects/226f41c7-07d7-43dd-aa25-79be3d28f635) and start prompting.
+
+**Use your preferred IDE**: Clone this repo, install dependencies with `npm i`, and run `npm run dev`.
+
+**GitHub Codespaces**: Use the Code button to launch a Codespace environment.
+
+### Technologies Used
+
+- Vite
+- TypeScript  
+- React 18
+- Supabase
+- shadcn/ui
+- Tailwind CSS
+- React Router
+- React Hook Form
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support and questions, please contact the development team or create an issue in the project repository.
