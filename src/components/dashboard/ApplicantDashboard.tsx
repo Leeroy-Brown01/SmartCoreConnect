@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useApplications } from '@/hooks/useApplications';
+import { useApplications, Application } from '@/hooks/useApplications';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ import ApplicationComments from '@/components/applications/ApplicationComments';
 const ApplicantDashboard = () => {
   const { applications, loading, createApplication } = useApplications();
   const [isCreating, setIsCreating] = useState(false);
-  const [selectedApplication, setSelectedApplication] = useState<any>(null);
+  const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
   const [newApplication, setNewApplication] = useState({
     title: '',
     description: ''

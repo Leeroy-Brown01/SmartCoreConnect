@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useApplications } from '@/hooks/useApplications';
+import { useApplications, Application } from '@/hooks/useApplications';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -10,10 +10,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { FileText, Clock, CheckCircle, Eye } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import ApplicationComments from '@/components/applications/ApplicationComments';
+import { Database } from '@/integrations/supabase/types';
 
 const ReviewerDashboard = () => {
   const { applications, loading, updateApplicationStatus } = useApplications();
-  const [selectedApplication, setSelectedApplication] = useState<any>(null);
+  const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -30,9 +31,9 @@ const ReviewerDashboard = () => {
     }
   };
 
-  const handleStatusUpdate = async (applicationId: string, newStatus: any) => {
+  const handleStatusUpdate = async (applicationId: string, newStatus: Database["public"]["Enums"]["application_status"]) => {
     const { error } = await updateApplicationStatus(applicationId, newStatus);
-    
+
     if (error) {
       toast({
         title: "Error",
@@ -193,7 +194,7 @@ const ReviewerDashboard = () => {
                     </Dialog>
                     
                     <Select
-                      onValueChange={(value) => handleStatusUpdate(app.id, value)}
+                      onValueChange={(value) => handleStatusUpdate(app.id, value as Database["public"]["Enums"]["application_status"])}
                       defaultValue={app.status}
                     >
                       <SelectTrigger className="w-32">

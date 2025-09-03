@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Users, FileText, Clock, CheckCircle } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { Database } from '@/integrations/supabase/types';
 
 const AdminDashboard = () => {
   const { applications, loading: appsLoading, updateApplicationStatus, assignReviewer } = useApplications();
@@ -62,12 +63,12 @@ const AdminDashboard = () => {
     setAssigningReviewer(null);
   };
 
-  const handleStatusUpdate = async (applicationId: string, newStatus: any) => {
+  const handleStatusUpdate = async (applicationId: string, newStatus: Database["public"]["Enums"]["application_status"]) => {
     const { error } = await updateApplicationStatus(applicationId, newStatus);
-    
+
     if (error) {
       toast({
-        title: "Error", 
+        title: "Error",
         description: "Failed to update status",
         variant: "destructive"
       });
@@ -79,13 +80,13 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleRoleUpdate = async (profileId: string, newRole: any) => {
+  const handleRoleUpdate = async (profileId: string, newRole: Database["public"]["Enums"]["user_role"]) => {
     const { error } = await updateUserRole(profileId, newRole);
-    
+
     if (error) {
       toast({
         title: "Error",
-        description: "Failed to update user role", 
+        description: "Failed to update user role",
         variant: "destructive"
       });
     } else {
