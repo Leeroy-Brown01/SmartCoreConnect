@@ -65,6 +65,7 @@ src/
 ### Prerequisites
 
 - Node.js 18+ and npm
+- Supabase CLI (install globally: `npm install -g supabase`)
 - Supabase account and project
 
 ### Installation
@@ -87,9 +88,46 @@ VITE_SUPABASE_URL=your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
-4. Run the development server:
+4. Run the development server (automatically starts Supabase backend):
 ```bash
 npm run dev
+```
+
+### Backend Automation
+
+The application includes automated backend setup scripts that handle Supabase local development environment management:
+
+#### Available Scripts
+
+- `npm run dev` - Starts Supabase backend and frontend development server
+- `npm run dev:frontend` - Runs only the frontend development server
+- `npm run backend:start` - Starts the local Supabase development environment
+- `npm run backend:stop` - Stops the local Supabase development environment
+- `npm run backend:reset` - Resets and restarts the Supabase environment
+- `npm run backend:migrate` - Applies database migrations
+- `npm run backend:seed` - Seeds the database with initial data
+
+#### First-Time Setup
+
+When you run `npm run dev` for the first time, the system will:
+1. Start the local Supabase development environment
+2. Apply all database migrations automatically
+3. Set up the necessary tables, policies, and storage buckets
+4. Start the frontend development server
+
+#### Manual Backend Management
+
+If you need to manage the backend separately:
+
+```bash
+# Start only the backend
+npm run backend:start
+
+# Apply migrations manually
+npm run backend:migrate
+
+# Stop the backend
+npm run backend:stop
 ```
 
 ### Database Setup
