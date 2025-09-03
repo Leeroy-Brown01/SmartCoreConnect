@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Profile {
@@ -34,6 +35,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -101,10 +103,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error, data } = await supabase.auth.signInWithPassword({
       email,
       password
     });
+
+    if (!error && data.session && data.user) {
+      // Fetch profile after signin
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', data.user.id)
+        .maybeSingle();
+
+      if (profileData && !profileError) {
+        setProfile(profileData);
+        // Redirect based on role
+        if (profileData.role === 'admin') {
+          navigate('/dashboard');
+        } else if (profileData.role === 'reviewer') {
+          navigate('/dashboard');
+        } else if (profileData.role === 'applicant') {
+          navigate('/dashboard');
+        } else {
+          navigate('/auth');
+        }
+      } else {
+        navigate('/auth');
+      }
+    }
+
     return { error };
   };
 

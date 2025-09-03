@@ -1,16 +1,10 @@
-# TODO: Fix Problems in README.md
+# Role-Based Access Control Implementation
 
 ## Completed Tasks
-- [x] Update project title from "SmartCoreConnect" to "Review Stream Hub"
-- [x] Fix installation cd command from "cd smartcoreconnect" to "cd review-stream-hub"
-- [x] Update project structure to include supabase/ directory
-- [x] Update package.json name from "vite_react_shadcn_ts" to "review-stream-hub"
-- [x] Update .env setup instructions to mention it may already exist
-- [x] Implement CLI prompt for manual Supabase installation selection during npm run dev
-
-## Summary of Changes
-- README.md: Updated title, cd command, project structure, and .env instructions
-- package.json: Updated project name to match directory and README
-- scripts/select-supabase.js: Created CLI script to prompt for Supabase URL and anon key
-- package.json: Modified dev script to run the prompt before starting backend and frontend
-- src/integrations/supabase/client.ts: Updated to read Supabase credentials from environment variables
+- [x] Update AuthContext.tsx signIn method to fetch profile and redirect user to their dashboard based on role after successful signin
+- [x] Add role-based redirect logic in App.tsx or create a PrivateRoute component to prevent unauthorized access to dashboards
+- [x] Ensure Dashboard.tsx remains as is for rendering correct dashboard based on role
+- [x] Add loading or redirect state during signin to avoid flicker
+- [x] Test role-based access for all user types (admin, reviewer, applicant)
+- [x] Handle edge cases like users without roles or authentication failures
+- [x] Test the implementation by running the application and verifying role-based redirects
